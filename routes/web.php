@@ -31,4 +31,4 @@ Route::get('/admin', function() {
 
 
 
-Route::resource('/admin/users','App\Http\Controllers\AdminUsersController');
+Route::resource('/admin/users','App\Http\Controllers\AdminUsersController', ['as' => 'admin']);
