@@ -37,10 +37,17 @@
         {!!Form::password('password', ['class'=>'form-control'])!!}
     </div>
     <div class="form-group">
-        {!!Form::submit('Edit', ['class'=>'btn btn-primary'])!!}
+        {!!Form::submit('Edit', ['class'=>'btn btn-primary col-sm-6'])!!}
     </div>
     {!!Form::close()!!}
 
+    {!!Form::open(['method'=>'delete', 'action'=>['App\Http\Controllers\AdminUsersController@destroy', $user->id]])!!}
+  <div class="form-group">
+    {!!Form::submit('Delete', ['class'=>'btn btn-danger col-sm-6'])!!}
+
+  </div>
+  
+    {!!Form::close()!!}
     @include('includes.form_error')
 
     @endsection

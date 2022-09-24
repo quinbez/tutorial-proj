@@ -5,7 +5,6 @@ use App\Models\User;
 use App\Models\Role;
 use App\Http\Requests\UsersRequest;
 use App\Models\Photo;
-
 use Illuminate\Http\Request;
 
 class AdminUsersController extends Controller
@@ -108,11 +107,12 @@ class AdminUsersController extends Controller
         $input= $request->all();
 
         if($file = $request->file('photo_id')){
-            $input = $file->getClientOriginalName().time();
+            $name = $file->getClientOriginalName().time();
             $file->move('images', $name); 
             $photo = Photo::create(['file'=>$name]);
             $input['photo_id']= $photo->id;
         }
+        $input['password']= bcrypt('$request->password');
         $user->update($input);
         return redirect('/admin/users');
         }
@@ -126,5 +126,11 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        unlink(public_path('\images\\').$user->photo->file);
+        $user->delete();
+
+        return redirect('/admin/users');
+
     }
 }

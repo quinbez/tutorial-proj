@@ -1,5 +1,5 @@
 <?php
-
+namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,5 +30,9 @@ Route::get('/admin', function() {
 });
 
 
+Route::group(['middleware'=>'admin'], function() {
 
-Route::resource('/admin/users','App\Http\Controllers\AdminUsersController', ['as' => 'admin']);
+
+});
+    Route::resource('/admin/users','App\Http\Controllers\AdminUsersController', ['as' => 'admin']);
+    Route::resource('/admin/posts','App\Http\Controllers\AdminPostsController', ['as' => 'admin']);

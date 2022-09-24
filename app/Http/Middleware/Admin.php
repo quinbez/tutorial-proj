@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 
 class Admin
@@ -14,8 +15,18 @@ class Admin
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next)
-    {
-        return $next($request);
-    }
+    // public function handle(Request $request, Closure $next)
+    // {
+
+    //     if(Gate::check()) {
+    //         if(Gate::user()->isAdmin()){
+
+    //              return $next($request);
+
+    //         }
+
+    //     };
+    //     return redirect('/');
+      
+    // }
 }
