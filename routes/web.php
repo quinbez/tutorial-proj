@@ -1,7 +1,8 @@
 <?php
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,20 +20,19 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/admin', function() {
     return view('layouts.admin');
 });
 
 
-Route::group(['middleware'=>'admin'], function() {
+Route::group(['prefix'=>'admin'], function() {
+
+    Route::resource('/users','App\Http\Controllers\AdminUsersController', ['as' => 'admin']);
+   
+    Route::resource('/posts','App\Http\Controllers\AdminPostsController', ['as' => 'admin']);
 
 
 });
-    Route::resource('/admin/users','App\Http\Controllers\AdminUsersController', ['as' => 'admin']);
-    Route::resource('/admin/posts','App\Http\Controllers\AdminPostsController', ['as' => 'admin']);
+    
