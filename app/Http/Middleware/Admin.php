@@ -17,9 +17,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-               
-        dd('here');
-        
+            
                 if(\Auth::check()) {
 
         

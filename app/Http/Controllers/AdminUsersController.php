@@ -8,6 +8,7 @@ use App\Models\Photo;
 use Illuminate\Http\Request;
 
 
+
 class AdminUsersController extends Controller
 {
     /**
