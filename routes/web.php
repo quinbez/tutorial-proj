@@ -34,5 +34,8 @@ Route::group(['prefix'=>'admin'], function() {
     Route::resource('/posts','App\Http\Controllers\AdminPostsController', ['as' => 'admin']);
 
     Route::resource('/categories','App\Http\Controllers\AdminCategoriesController', ['as' => 'admin']);
+
+    Route::resource('/media', 'App\Http\Controllers\AdminMediasController', ['as'=>'admin']);
+
 });
     
