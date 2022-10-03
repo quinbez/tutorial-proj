@@ -12,6 +12,8 @@
             <th>Photo</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Post</th>
+            <th>Comment</th>
             <th>Created</th>
             <th>Updated</th>
         </tr>
@@ -29,6 +31,8 @@
             <td><img height = "50" src="{{$post->photo ? $post->photo->file: 'no photo'}}" alt=""></td>
             <td>{{$post->title}}</td>
             <td>{{$post->description}}</td>
+            <td><a href="{{route('home.post', $post->id)}}">View Post</a></td>
+            <td><a href="{{route('admin.comments.show', $post->id)}}">View Comments</a></td>
             <td>{{$post->created_at->diffForHumans()}}</td>
             <td>{{$post->updated_at->diffForHumans()}}</td>
 

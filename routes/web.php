@@ -25,6 +25,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/admin', function() {
     return view('layouts.admin');
 });
+Route::get('/post/{id}', ['as'=> 'home.post', 'uses'=>'App\Http\Controllers\AdminPostsController@post']);
 
 
 Route::group(['prefix'=>'admin'], function() {
@@ -37,5 +38,12 @@ Route::group(['prefix'=>'admin'], function() {
 
     Route::resource('/media', 'App\Http\Controllers\AdminMediasController', ['as'=>'admin']);
 
+    Route::resource('/comments', 'App\Http\Controllers\PostCommentsController', ['as'=>'admin']);
+
+    Route::resource('/comment/replies', 'App\Http\Controllers\CommentRepliesController', ['as'=>'admin']);
+});
+Route::group(['prefix'=>'auth'], function() {
+
+    Route::post('comment/reply', 'App\Http\Controllers\CommentRepliesController@createReply', ['as'=>'user']);
 });
     
